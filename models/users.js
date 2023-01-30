@@ -13,7 +13,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: '',//match by valid email type,
+      match: [/.+@.+\..+/, "Invalid e-mail address!"],
     },
     thoughts: [{
       type: mongoose.Schema.Types.ObjectId,
