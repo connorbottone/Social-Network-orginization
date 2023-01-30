@@ -1,4 +1,4 @@
-const { Schema, Types } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const reactionSchema = require("./Reaction");
 const dateFormat = require("../utils/dateHelper.js");
 
@@ -30,7 +30,7 @@ const ThoughtSchema = new Schema(
  
     }
 );
-thoughtSchema.virtual('reactionCount')
+ThoughtSchema.virtual('reactionCount')
 .get(function() {
     return this.reactions.length;
 });
