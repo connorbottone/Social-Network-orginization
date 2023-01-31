@@ -2,7 +2,7 @@ const { Thought, Users } = require('../models');
 
 module.exports = {
   
-  getAllthoughts(req, res) {
+  getAllThoughts(req, res) {
     Thought.find()
       .sort({ createdAt: -1 })
       .then((thoughts) => res.json(thoughts))
