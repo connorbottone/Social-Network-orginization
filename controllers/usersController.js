@@ -58,7 +58,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 //function to add a new freind to exsisting user 
-  NewFriend(req, res) {
+  newFriend(req, res) {
     Users.findOneAndUpdate(
       { _id: req.params.usersId },
       { $addToSet: { friends: req.params.friendId } },
