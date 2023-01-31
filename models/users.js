@@ -16,11 +16,11 @@ const UserSchema = new Schema(
       match: [/.+@.+\..+/, "Invalid e-mail address!"],
     },
     thoughts: [{
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref:'Thought'
     }],
     friends:[{
-      type:mongoose.Schema.Types.ObjectId,
+      type:Schema.Types.ObjectId,
       ref:'User'
     }]
   },
