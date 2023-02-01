@@ -25,9 +25,9 @@ module.exports = {
     Thought.create(req.body)
       .then((newThought) => {
         console.log("user.findoneandupdate")
-        Users.findOneAndUpdate(
+        return Users.findOneAndUpdate(
           { _id: req.body.userId },
-          { $addToSet: { thoughts: newThought._id } },
+          { $push: { thoughts: newThought._id } },
           { new: true }
         );
       })
