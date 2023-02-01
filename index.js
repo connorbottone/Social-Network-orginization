@@ -8,7 +8,10 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
-
+app.use((req, res, next) => {
+  console.log(` ${req.method} request received on endpoint ${req.url}`);
+  next();
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

@@ -1,7 +1,7 @@
 const { Thought, Users } = require('../models');
 
 module.exports = {
-  
+
   getAllThoughts(req, res) {
     Thought.find()
       .sort({ createdAt: -1 })
@@ -19,13 +19,14 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  
+
   createNewThought(req, res) {
+    console.log('createNew thought')
     Thought.create(req.body)
       .then((newThought) => {
-        return Users.findOneAndUpdate(
+        console.log("user.findoneandupdate")
+        Users.findOneAndUpdate(
           { _id: req.body.userId },
-          {username: req.body.username},
           { $addToSet: { thoughts: newThought._id } },
           { new: true }
         );
@@ -59,7 +60,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
- 
+
   deleteThought(req, res) {
     Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -94,7 +95,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
- 
+
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
