@@ -59,11 +59,23 @@ module.exports = {
   },
   //function to add a new freind to exsisting user 
   newFriend(req, res) {
-    Users.findOneAndUpdate(
-      { _id: req.params.usersId },
-      { $addToSet: { friends: req.params.friendId } },
-      { new: true }
-    )
+    Users.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { friends: req.params.friendId } }, { new: true })
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          return res.status(404).json({ message: 'No user with this id!' });
+        }
+        res.json(dbUserData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
+
+  //function to remove a freind from exsisting user
+
+  removeFriend(req, res) {
+    Users.findOneAndUpdate({ _id: req.params.userId }, { $pull: { friends: req.params.friendId } }, { new: true })
       .then((dbUsersData) => {
         if (!dbUsersData) {
           return res.status(404).json({ message: 'No user with this id!' });
@@ -73,49 +85,21 @@ module.exports = {
       .catch((err) => {
         console.log(err);
         res.status(500).json(err);
-      });},
+      });
+  }
+}
 
-  //function to remove a freind from exsisting user
-    
-      removeFriend(req, res) {
-        Users.findOneAndUpdate({ _id: req.params.userId }, { $pull: { friends: req.params.friendId } }, { new: true })
-          .then((dbUsersData) => {
-          if (!dbUsersData) {
-             return res.status(404).json({ message: 'No user with this id!' });
-            }
-            res.json(dbUsersData);
-          })
-          .catch((err) => {
-            console.log(err);
-             res.status(500).json(err);
-          });
-      }}
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-  //     Users.findOneAndUpdate(
-  //       { _id: req.params.usersId },
-  //       { $pull: { friends: req.params.friendId } },
-  //       { new: true }
-  //     )
-  //       .then((users) =>
-  //         !users
-  //           ? res.status(404).json({ message: 'No user found with given ID' })
-  //           : res.json(users)
-  //       )
-  //       .catch((err) => res.status(500).json(err));
-  //   },
 
-  // };
+
+
+
+
+
+
+
+
+
+
+
+
+
