@@ -23,15 +23,15 @@ module.exports = {
   createNewThought(req, res) {
     Thought.create(req.body)
       .then((newThought) => {
-        return User.findOneAndUpdate(
+        return Users.findOneAndUpdate(
           { _id: req.body.userId },
           {username: req.body.username},
           { $addToSet: { thoughts: newThought._id } },
           { new: true }
         );
       })
-      .then((user) =>
-        !user
+      .then((users) =>
+        !users
           ? res.status(404).json({
             message: 'Thought created,  no user matches givin ID',
           })
