@@ -11,7 +11,7 @@ const {
 } = require('../../controllers/usersController');
 
 //get and post methods for router using imported functions
-router.route('/')
+router.route('/')git 
 .get(getAllUsers)
 .post(createNewUser);
 
