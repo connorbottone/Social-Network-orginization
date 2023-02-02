@@ -6,7 +6,7 @@
 - This webpage was designed to mange a social media page and store
  - Users
  - Comments/thougths
- - And Reactions to comment/thought into a data base to help orginaze and manage a site
+ - And Reactions to comment/thought into a  Mongodb data base to help orginaze and manage a site
 - Useres have the ability to Add and remove freinds
 - aswell as post and react to comments and delete reactions/comments
 
@@ -30,6 +30,7 @@
 - `mongoose`
 - `express`
 - `Insomnia`
+- `MongoDB`
  
  
 ## Usage
